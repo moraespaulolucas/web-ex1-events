@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ex1</title>
+	</head>
+
+	<body>
+		<h1 id="titulo">Título</h1>
+		<h3 id="subtitulo">Subtítulo</h3>
+		<p>Uma lista de itens</p>
+		<ul>
+			<li>
+				Seus itens
+				<ol id="lista_inicio">
+					<li>Livro</li>
+					<li>Caneta</li>
+					<li>Telefone</li>
+					<li>Carteira</li>
+				</ol>
+			</li>
+			<li>
+				Outros itens
+				<ol id="lista_fim">
+					<li>Maçã</li>
+				</ol>
+			</li>
+		</ul>
+		<div>
+			<button onclick="addListaInicio()">Aumentar itens no início</button>
+			<button onclick="addListaFim()">Criar os outros itens no fim</button>
+			<button onclick="mudaTitulo()">Corrigir os títulos</button>
+		</div>
+		<script>
+			// cria item que recebe lista
+			const criaItem = (lista) => {
+				// cria li
+				const li = document.createElement("li")
+				// insere texto e quantidade de itens da lista + 1
+				li.innerHTML = `Item ${lista.childElementCount + 1}`
+				// retorna item
+				return li
+			}
+
+			// adiciona na lista de cima
+			const addListaInicio = () => {
+				// pega lista de cima
+				const listaInicio = document.querySelector("#lista_inicio")
+				// adiciona item
+				listaInicio.insertBefore(criaItem(listaInicio), listaInicio.children[0])
+			}
+
+			// adiciona na lista de baixo
+			const addListaFim = () => {
+				// pega lista de baixo
+				const listaFim = document.querySelector("#lista_fim")
+				// adiciona item
+				listaFim.appendChild(criaItem(listaFim))
+			}
+
+			// chama prompt
+			const mudaTitulo = () => {
+				// pega novo titulo do prompt
+				const novoTitulo = prompt("Digite o título")
+				// pega novo subtitulo do prompt
+				const novoSubtitulo = prompt("Digite o subtítulo")
+				// pega titulo
+				const titulo = document.querySelector("#titulo")
+				// pega subtitulo
+				const subtitulo = document.querySelector("#subtitulo")
+				// insere novo titulo se for valido
+				if (novoTitulo) {
+					titulo.innerHTML = novoTitulo
+				}
+				// insere novo subtitulo se for valido
+				if (novoSubtitulo) {
+					subtitulo.innerHTML = novoSubtitulo
+				}
+			}
+		</script>
+	</body>
+</html>
